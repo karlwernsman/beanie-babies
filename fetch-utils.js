@@ -9,6 +9,10 @@ export async function getBabies(title, astroSign) {
     let query = client.from('beanie_babies').select('*').order('title').limit(100);
 
     const response = await query;
-    console.log(response);
+    return response;
+}
+
+export async function getAstro() {
+    const response = await client.from('beanie_baby_astro_signs').select('*');
     return response;
 }

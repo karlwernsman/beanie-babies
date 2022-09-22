@@ -35,3 +35,10 @@ export function renderBaby(baby) {
 
     return listItem;
 }
+
+export function renderAstro(astroSign) {
+    const option = document.createElement('option');
+    option.value = astroSign.name;
+    option.textContent = astroSign.name;
+    return option;
+}
