@@ -6,6 +6,7 @@ import { getAstro } from './fetch-utils.js';
 /* Get DOM Elements */
 const babyList = document.getElementById('baby-list');
 const astroSelect = document.getElementById('astro-select');
+const searchForm = document.getElementById('search-form');
 
 /* State */
 let babies = [];
@@ -26,7 +27,7 @@ window.addEventListener('load', async () => {
 });
 
 async function findBabies(title, astroSign) {
-    const response = await getBabies();
+    const response = await getBabies(title, astroSign);
     error = response.error;
     babies = response.data;
 
@@ -34,6 +35,13 @@ async function findBabies(title, astroSign) {
         displayBabies();
     }
 }
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(searchForm);
+    findBabies(formData.get('title'), formData.get('astroSign'));
+});
+
 /* Display Functions */
 function displayBabies() {
     babyList.innerHTML = '';
