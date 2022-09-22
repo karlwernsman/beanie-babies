@@ -1,0 +1,29 @@
+main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.card {
+    background: lightgoldenrodyellow;
+    height: 345px;
+    width: 600px;
+    padding: 50px;
+    border: 20px groove rgb(236, 185, 89);
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card img {
+    height: 200px;
+    width: auto;
+    justify-self: left;
+}
+
+form {
+    display: flex;
+}
+
+* {
+    font-family: 'Cinzel', serif;
+}
