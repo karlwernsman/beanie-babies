@@ -7,11 +7,13 @@ import { getAstro } from './fetch-utils.js';
 const babyList = document.getElementById('baby-list');
 const astroSelect = document.getElementById('astro-select');
 const searchForm = document.getElementById('search-form');
+const notification = document.getElementById('notification');
 
 /* State */
 let babies = [];
 let error = null;
 let astroSign = [];
+let count = 0;
 
 /* Events */
 window.addEventListener('load', async () => {
@@ -30,6 +32,8 @@ async function findBabies(title, astroSign) {
     const response = await getBabies(title, astroSign);
     error = response.error;
     babies = response.data;
+    count = response.count;
+    displayNotifications();
 
     if (!error) {
         displayBabies();
@@ -56,6 +60,16 @@ function displayAstro() {
     for (const astro of astroSign) {
         const option = renderAstro(astro);
         astroSelect.append(option);
+    }
+}
+
+function displayNotifications() {
+    if (error) {
+        notification.classList.add('error');
+        notification.textContent = error.message;
+    } else {
+        notification.classList.remove('error');
+        notification.textContent = `Showing ${babies.length} of ${count} matching babies.`;
     }
 }
 // (don't forget to call any display functions you want to run on page load!)
